@@ -9,6 +9,14 @@
 	},
 	{
 		"name": "Seattle",
-		"id": "ff63a3f0-6f25-46b1-adb2-61330fe53961"
+		"id": "afc44c66-b572-4a28-babb-417f4934ee1c"
+	},
+	{
+		"name": "New York",
+		"id": "cbe355a7-66f9-4ec6-bea1-891c9080f9fa"
+	},
+	{
+		"name": "Dallas",
+		"id": "7aa62ed8-9edc-4442-9ccb-53768a038d26"
 	}
 ]
