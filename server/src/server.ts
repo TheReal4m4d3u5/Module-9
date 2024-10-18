@@ -18,7 +18,8 @@ const PORT = process.env.PORT || 3002;
 
 // TODO: Serve static files of entire client dist folder
                             
-app.use('/static', express.static(path.join(__dirname, 'public')));
+//// we fixed this
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 // TODO: Implement middleware for parsing JSON and urlencoded form data ?????????????????
 

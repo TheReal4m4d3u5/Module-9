@@ -1,6 +1,6 @@
 import { Router } from 'express';
 const router = Router();
-// import fs from 'node:fs/promises';
+//  import fs from 'node:fs/promises';
 
 import HistoryService from '../../service/historyService.js';
  import WeatherService from '../../service/weatherService.js';
@@ -14,12 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-
-
-
-
-
-
 // TODO: POST Request with city name to retrieve weather data
 
  
@@ -29,19 +23,30 @@ app.use(express.urlencoded({ extended: true }));
   // openweathermap geo weather point returns lat and lon
   // openweathermap endpoint by city name - resources channel 
   // https://openweathermap.org/current#name
-  router.get('/weather/', async (req, res) => {
+  router.get('/', async (req, res) => {
     
+
+    console.log("here"  );
+
   //  const city = req.body;
     try {
-
       const city = req.body.city;
 
-      //gets send to the front end, then the front end parses the data 
-     const cityData = await WeatherService.getWeatherForCity(city);
- 
+     
 
+
+      //gets send to the front end, then the front end parses the data 
+
+      console.log("city" + city);
+
+
+      const cityData = await WeatherService.getWeatherForCity(city);
+
+      console.log("cityData" + cityData);
+
+ 
       if (typeof cityData === 'string') {
-        res.status(404).json({ message: 'No events found' });
+        res.status(400).json({ message: 'No events found' });
 
         console.log('city' +cityData);
 
@@ -54,39 +59,21 @@ app.use(express.urlencoded({ extended: true }));
     }
   })
 
-  // try {
-  //   const stateName = req.params.state;
-  //   const stateCode = await ParkService.convertStateNameToCode(stateName);
-  //   const parks = await ParkService.getParksByState(stateCode);
-  //   //ensures saved data has proper casing regardless of input
-  //   const sanitizedStateName = await ParkService.convertStateCodeToName(
-  //     stateCode
-  //   );
-  //   await HistoryService.addState(sanitizedStateName);
-  //   res.json(parks);
-  // } catch (err) {
-  //   console.log(err);
-  //   res.status(500).json(err);
-  // }
-
-
-
-
 
   // TODO: save city to search history
+//* `GET /api/weather/history` should read the `searchHistory.json` file and return all saved cities as JSON.
 
 
-  router.get('/:state', async (_req, res) => {
+  router.post('/', async (req, res) => {
     try {
-      //const stateName = req.params.state;
-   //   const stateCode = await WeatherService.convertCityNameToCode(stateName);
-     // const parks = await WeatherService.getParksByCity(stateCode);
-      //ensures saved data has proper casing regardless of input
-      // const sanitizedStateName = await WeatherService.convertStateCodeToName(
-      //   stateCode
-      // );
-      // await HistoryService.addCity(sanitizedStateName);
-      // res.json(parks);
+      const city = req.body.city;
+      await HistoryService.addCity(city);
+
+      res.json(city);
+
+      await HistoryService.addCity(city);
+      res.json(city);
+
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -103,18 +90,21 @@ app.use(express.urlencoded({ extended: true }));
       console.log(err);
       res.status(500).json(err);
     }
-
   });
+
+
+    // how do we know if we want to get the data from the parameter endpoints or the body?
+    // ????????????????????????????????????????????????????????????????????????????????????????????????
 
   // * BONUS TODO: DELETE city from search history
   router.delete('/history/:id', async (req, res) => {
 
     try {
-      if (!req.params.id) {
-        res.status(400).json({ msg: 'State id is required' });
+      if (!req.body.id) {
+        res.status(400).json({ msg: 'City id is required' });
       }
       await HistoryService.removeCity(req.params.id);
-      res.json({ success: 'State successfully removed from search history' });
+      res.json({ success: 'City successfully removed from search history' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

@@ -5,23 +5,13 @@ dotenv.config();
 
 // TODO: Define an interface for the Coordinates object
 
-
 interface Coordinates{
   latitude: number;
   longitude: number;
 }
 
 
-// interface WeatherData {
-//   temperature: number;
-//   description: string;
-//   city: string;
-//   country: string
-// }
-
-
 // TODO: Define a class for the Weather object
-
 class Weather{
   temperature: number;
   humidity: number;
