@@ -46,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
  
       if (typeof cityData === 'string') {
-        res.status(400).json({ message: 'No events found' });
+        res.status(404).json({ message: 'No events found' });
 
         console.log('city' +cityData);
 
