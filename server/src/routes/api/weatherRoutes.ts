@@ -32,8 +32,6 @@ app.use(express.urlencoded({ extended: true }));
     try {
       const city = req.body.city;
 
-     
-
 
       //gets send to the front end, then the front end parses the data 
 
@@ -66,12 +64,13 @@ app.use(express.urlencoded({ extended: true }));
 
   router.post('/', async (req, res) => {
     try {
-      const city = req.body.city;
+      const city = req.body.cityName;
       await HistoryService.addCity(city);
 
-      res.json(city);
+      
+      //this 
 
-      await HistoryService.addCity(city);
+
       res.json(city);
 
     } catch (err) {
