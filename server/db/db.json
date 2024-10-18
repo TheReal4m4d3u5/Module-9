@@ -1,6 +1,14 @@
 [
 	{
+		"name": "London",
+		"id": "a0685618-4c62-4458-a866-eb93dd01a87f"
+	},
+	{
 		"name": "Minneapolis",
-		"id": "cdd59207-fd78-48cd-9fbc-ba42baf0a6e6"
+		"id": "e77caeb2-24fc-4a88-a0de-7c0b883fc39d"
+	},
+	{
+		"name": "Seattle",
+		"id": "ff63a3f0-6f25-46b1-adb2-61330fe53961"
 	}
 ]

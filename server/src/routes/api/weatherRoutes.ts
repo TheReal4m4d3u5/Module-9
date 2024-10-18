@@ -25,10 +25,6 @@ app.use(express.urlencoded({ extended: true }));
   // https://openweathermap.org/current#name
   router.get('/', async (req, res) => {
     
-
-    console.log("here"  );
-
-  //  const city = req.body;
     try {
       const city = req.body.city;
 
@@ -61,17 +57,13 @@ app.use(express.urlencoded({ extended: true }));
   // TODO: save city to search history
 //* `GET /api/weather/history` should read the `searchHistory.json` file and return all saved cities as JSON.
 
-
   router.post('/', async (req, res) => {
     try {
       const city = req.body.cityName;
       await HistoryService.addCity(city);
 
-      
-      //this 
-
-
-      res.json(city);
+      const cityData = await WeatherService.getWeatherForCity(city);
+      res.json(cityData);
 
     } catch (err) {
       console.log(err);
@@ -84,7 +76,8 @@ app.use(express.urlencoded({ extended: true }));
 
     try {
       const savedCities = await HistoryService.getCities();
-      res.json(savedCities);
+      
+      res.json(savedCities);  
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
