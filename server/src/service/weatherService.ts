@@ -124,18 +124,6 @@ class WeatherService {
 
       const data = await response.json();
 
-
-      data.forEach((entry:any) => {
-
-        console.log("main.temp, " + entry)
-      })
-
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
-
-
-
-
       return data;
 
     }
@@ -165,39 +153,39 @@ class WeatherService {
 
 
   // // TODO: Complete buildForecastArray method
-   private buildForecastArray(currentWeather: Weather, weatherData: any[]) {
+   private buildForecastArray(currentWeather: Weather, _weatherData: any[]) {
       const forecaseArray: Weather[] = [];
 
       forecaseArray.push(currentWeather);
 
-      console.log("weatherData!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      console.log("weatherData[0].coord");
-      console.log(weatherData[0].coord);
+      // console.log("weatherData!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      // console.log("weatherData[0].coord");
+      // console.log(weatherData[0].coord);
   
-      console.log("weatherData!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      // console.log("weatherData!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     //  console.log("myData: " + weatherData.temp);
 
 
       
    
-      weatherData.forEach((entry:any) => {
+      // weatherData.forEach((entry:any) => {
 
-         console.log("main.temp, " + entry)
+      //    console.log("main.temp, " + entry)
 
-        //  const weather = new Weather(
+      //   //  const weather = new Weather(
 
-        //   entry.main.temp,
-        //   entry.main.humidity,
-        //   entry.wind.speed,
-        //   { latitude: entry.coord.lat, longitude: entry.coord.lon}
-        // );
+      //   //   entry.main.temp,
+      //   //   entry.main.humidity,
+      //   //   entry.wind.speed,
+      //   //   { latitude: entry.coord.lat, longitude: entry.coord.lon}
+      //   // );
 
-        // console.log("weather", weather);
+      //   // console.log("weather", weather);
 
-        // forecaseArray.push(weather);
+      //   // forecaseArray.push(weather);
 
-      } );
+      // } );
 
       return forecaseArray;
    }
