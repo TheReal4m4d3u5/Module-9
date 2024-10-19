@@ -121,7 +121,19 @@ class WeatherService {
       if(!response.ok){
           throw new Error('Failed to fetch weather data.');
       }
+
       const data = await response.json();
+
+
+      data.forEach((entry:any) => {
+
+        console.log("main.temp, " + entry)
+      })
+
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+
+
 
 
       return data;
