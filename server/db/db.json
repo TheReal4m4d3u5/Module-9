@@ -1,14 +1,18 @@
 [
 	{
-		"name": "Dallas",
-		"id": "f1e7bd03-efd0-4601-b678-9cd14f2cfbf1"
+		"name": "San Diego",
+		"id": "32d28978-57ea-4218-b14f-2d733f55c9e4"
 	},
 	{
 		"name": "Seattle",
-		"id": "d7551ac6-c709-4e11-8a09-caf336c277d8"
+		"id": "c863fdeb-fa91-4071-9b7f-99e6f98fd3a3"
 	},
 	{
-		"name": "San Diego",
-		"id": "44938566-9c7b-4476-a62f-8f3f0b83fce8"
+		"name": "Minneapolis",
+		"id": "b854a9ab-3fad-4e71-83bd-c45cf84cc8b7"
+	},
+	{
+		"name": "New York",
+		"id": "f459338d-cea0-4984-afe1-955f3ea10184"
 	}
 ]

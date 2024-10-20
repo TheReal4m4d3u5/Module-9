@@ -87,6 +87,7 @@ app.use(express.urlencoded({ extended: true }));
   // * BONUS TODO: DELETE city from search history
 router.delete("/history/:id", async (req, res) => {
   try {
+
     if (!req.params.id) {
       res.status(400).json({ msg: "City id is required" });
     }
@@ -97,7 +98,6 @@ router.delete("/history/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
 
 
   // Listen for connections

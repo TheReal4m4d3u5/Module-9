@@ -58,30 +58,25 @@ class WeatherService {
 
     const coordinates = [data[0].lat, data[0].lon];
 
-    console.log("data.latitude: " + data[0].lon);
-
     return coordinates;
   }
 
   // TODO: Create destructureLocationData method
   private destructureLocationData(locationData: any): Coordinates {
     let myCord: Coordinates;
-    console.log("destructureLocationData");
-    console.log("locationData.latitude: ", locationData);
-    console.log("locationData.latitude: " + locationData[0]);
-    console.log("locationData.latitude: " + locationData[1]);
-    //console.log("locationData[0]: " + locationData[]);
-
-    console.log("destructureLocationData");
-
     myCord = { latitude: locationData[0], longitude: locationData[0] };
     return myCord
   }
 
   // TODO: Create buildGeocodeQuery method
   private buildGeocodeQuery(): string {
-    let query = `http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&limit=5&appid=${this.apiKey}`;
+
     console.log("buildGeocodeQuery: ");
+    console.log(`this.cityName + ` + this.cityName);
+
+
+    let query = `http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&limit=5&appid=${this.apiKey}`;
+    
     console.log("query: " + query);
     console.log("buildGeocodeQuery: ");
     console.log(" ");
@@ -92,14 +87,12 @@ class WeatherService {
   // // TODO: Create buildWeatherQuery method
   private buildCurrentWeatherQuery(coordinates: Coordinates): string {
     let query = `${this.baseURL}/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.apiKey}`;
-    console.log("query: " + query);
-
+   
     return query;
   }
 
   private buildForecastWeatherQuery(coordinates: Coordinates): string {
     const query = `${this.baseURL}/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${this.apiKey}`;
-    console.log("query: " + query);
 
     return query;
   }
@@ -109,18 +102,17 @@ class WeatherService {
     let locationDataDestructured = await this.destructureLocationData(
       await this.fetchLocationData(this.buildGeocodeQuery())
     );
+
     return locationDataDestructured;
   }
 
   // // TODO: Create fetchWeatherData method
-  private async fetchCurrentWeatherData() {
+  private async fetchWeatherData() {
     const response = await fetch(
       this.buildCurrentWeatherQuery(
         await this.fetchAndDestructureLocationData()
       )
     );
-
-    console.log("response: ", response);
 
     if (!response.ok) {
       throw new Error('Failed to fetch weather data.');
@@ -143,7 +135,15 @@ class WeatherService {
     }
 
     const data = await response.json();
+
+    console.log("weather data data: ", data);
+    console.log("", data);
+
     const dailyForecast = this.extractDailyData(data.list);
+
+    console.log("dailyForecast: ", dailyForecast);
+    console.log("", dailyForecast);
+
 
     return {
       city: data.city,
@@ -156,16 +156,45 @@ class WeatherService {
     const numberOfDays = 5;
     const chunkSize = 8; // 40 data points / 5 days
     const dailyData: any[] = [];
+
+
+
     for (let i = 0; i < numberOfDays; i++) {
-      const chunk = dataPoints.slice(i * chunkSize, (i + 1) * chunkSize);
-      if (chunk.length > 0) {
-        // Assuming the best match is the one with the highest temperature
-        const bestMatch = chunk.reduce((best, current) =>
-          current.main.temp > best.main.temp ? current : best
-        );
-        dailyData.push(bestMatch);
-      }
+    console.log("chunk: ", dataPoints.slice(i * chunkSize, (i + 1) * chunkSize))
     }
+
+
+    for (let i = 0; i < numberOfDays; i++) {
+      console.log("i " + i)
+      console.log("chunk datapoints: ")
+      console.log("", dataPoints[i])
+      dailyData.push(dataPoints[i]);
+    }
+
+
+
+    // dailyData.push(bestMatch);
+
+
+    // for (let i = 0; i < numberOfDays; i++) {
+    //   const chunk = dataPoints.slice(i * chunkSize, (i + 1) * chunkSize);
+    //   if (chunk.length > 0) {
+
+    //     // Assuming the best match is the one with the highest temperature
+    //     const bestMatch = chunk.reduce((best, current) =>
+    //       current.main.temp > best.main.temp ? current : best
+    //     );
+    //     dailyData.push(bestMatch);
+    //   }
+    // }
+
+    console.log("dailyData: ")
+    console.log("", dailyData)
+    
+
+    console.log("dailyData: ")
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!dailyData done:  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
 
     return dailyData;
   }
@@ -198,6 +227,12 @@ class WeatherService {
       latitude: response.city.coord.lat,
       longitude: response.city.coord.lon,
     };
+
+
+    console.log("response.list ");
+    console.log("", response.list);
+
+
     response.list.forEach((day: any) => {
       forecast.push(this.parseForecastDay(day, coordinates));
     });
@@ -210,15 +245,14 @@ class WeatherService {
   async getWeatherForCity(cityName: string): Promise<Weather[]> {
     this.cityName = cityName;
 
-    const weatherData = await this.fetchCurrentWeatherData();
+    const weatherData = await this.fetchWeatherData();
     const forecast = await this.fetchForecastWeatherData();
-
-    console.log("weatherData: " + weatherData[0]);
 
     const currentWeather = this.parseCurrentWeather(weatherData);
     const forecastWeather = this.parseForecastWeather(forecast);
 
     forecastWeather.unshift(currentWeather);
+
 
     return forecastWeather;
 
