@@ -25,19 +25,15 @@ app.use(express.urlencoded({ extended: true }));
     try {
       const city = req.body.city;
 
-
-
-      
-      
       const cityData = await WeatherService.getWeatherForCity(city);
-
-   
-
 
       if (typeof cityData === 'string') {
         res.status(404).json({ message: 'No events found' });
 
       } else {
+        console.log("cityData:");
+        console.log("");
+        console.log(cityData);
         res.json(cityData);
       }
     } catch (err) {
