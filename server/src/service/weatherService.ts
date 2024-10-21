@@ -173,9 +173,8 @@ class WeatherService {
 
 
 
+       // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! This is Riley Martiez code showing me how he would solve this problem !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // dailyData.push(bestMatch);
-
-
     // for (let i = 0; i < numberOfDays; i++) {
     //   const chunk = dataPoints.slice(i * chunkSize, (i + 1) * chunkSize);
     //   if (chunk.length > 0) {

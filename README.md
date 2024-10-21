@@ -103,6 +103,6 @@ link to video
 
   ## Notes 
 
-  I was tutord by Riley martiez on how to do the extractDailyData
+  I was tutord by Riley Martiez on how to do the extractDailyData
   
   I was also tutored by Alex the tutor from University of Minnesota on how to set up all my method calls 
