@@ -1,18 +1,10 @@
 [
 	{
-		"name": "San Diego",
-		"id": "32d28978-57ea-4218-b14f-2d733f55c9e4"
-	},
-	{
-		"name": "Seattle",
-		"id": "c863fdeb-fa91-4071-9b7f-99e6f98fd3a3"
-	},
-	{
-		"name": "Minneapolis",
-		"id": "b854a9ab-3fad-4e71-83bd-c45cf84cc8b7"
-	},
-	{
 		"name": "New York",
 		"id": "f459338d-cea0-4984-afe1-955f3ea10184"
+	},
+	{
+		"name": "San Diego",
+		"id": "cfb2cd95-1381-4925-ba90-924bb107a4f0"
 	}
 ]
